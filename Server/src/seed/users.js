@@ -8,6 +8,6 @@ module.exports = () => {
         password: "123456789",
         isActive: true,
         isAdmin : true,
-        lastLoggedIn: '',
+        
     }
 }

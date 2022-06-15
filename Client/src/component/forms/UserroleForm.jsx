@@ -12,7 +12,7 @@ import * as yup from 'yup'
 
 const UserroleForm = () => {
   const schema = yup.object().shape({
-    year: yup.number().min(4).max(4).required('year is requuired'),
+    year: yup.number().required('year is requuired'),
     standard: yup.string().required(),
     division: yup.string().required(),
     subject: yup.string().required(),

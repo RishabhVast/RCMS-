@@ -5,6 +5,7 @@ import  Role    from "./component/pages/Roles";
 import  RoleForm from './component/forms/RoleForm'
 import  Register  from "./component/forms/Register";
 import  Students  from "./component/pages/Students";
+import  Classtdash  from "./component/pages/Classtdash";
 import  Login     from "./component/pages/Login";
 import  Home      from "./component/pages/Home";
 import  Users     from "./component/pages/Users";
@@ -14,9 +15,14 @@ import  Subjects     from "./component/pages/Subjects";
 import  Standards    from "./component/pages/Standards";
 import  Divisions    from "./component/pages/Divisions";
 import  Grades       from "./component/pages/Grades"
+import  GradeForm    from "./component/forms/GradeForm"
 import  SubjectForm    from "./component/forms/SubjectForm"
 import UserRole from "./component/pages/UserRole";
 import UserroleForm from "./component/forms/UserroleForm";
+import Classteacher from "./component/pages/Classteacher";
+import Subteacher from "./component/pages/Subteacher";
+import Subtdash from "./component/pages/Subtdash";
+import Studentform from "./component/forms/Studentform";
 
 function App() {
   return (
@@ -26,6 +32,8 @@ function App() {
       <Routes>
       <Route> 
           <Route path="/" element={<Login />} />
+          <Route path="register" element={<Register />} />
+         
          
        
           <Route path="/home" element={<Home />} >
@@ -42,7 +50,7 @@ function App() {
           <Route path="role" element={<Role />} />
           <Route path="role/form" element={<RoleForm />} />
           <Route path="role/form/:roleId" element={<RoleForm/>} />
-          <Route path="students" element={<Students />} />
+          
           {/* division */}
           <Route path="divisions" element={<Divisions />} />
           <Route path="division/dform" element={<DivisionForm/>} />
@@ -50,21 +58,38 @@ function App() {
           <Route path="division/dform/:divisionId" element={<DivisionForm/>} />
           {/* grades */}
           <Route path="grades" element={<Grades />} />
+          <Route path="gradeform" element={<GradeForm/>} />
+          <Route path="gradeform/:gradeId" element={<GradeForm/>} />
+
           {/* userroles */}
           <Route path="userrole" element={<UserRole />} />
           <Route path="userroleform" element={<UserroleForm/>} />
           <Route path="userroleform/:userroleId" element={<UserroleForm/>} />
           {/* register */}
-          <Route path="register" element={<Register />} />
-          
-          <Route
+          </Route>
+
+          <Route path="/classteacher"  element={<Classteacher />} >
+          <Route path="dashboard" element={<Classtdash />} />
+          <Route path="students" element={<Students />} />
+          <Route path="studentsform" element={<Studentform />} />
+
+       
+          </Route>
+         
+           <Route path="/subteacher" element={<Subteacher />} >
+            
+           <Route path="subtdashboard" element={<Subtdash />} />
+         
+
+
+           </Route>
+           <Route
             path="*"
             element={
               <main style={{ padding: "1rem" }}>
                 <h1>There's nothing here!</h1></main>
             }
           />
-           </Route>
         </Route>
       </Routes>
 

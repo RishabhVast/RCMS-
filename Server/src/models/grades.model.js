@@ -9,9 +9,26 @@ module.exports = function (app) {
   const schema = new Schema({
     name : { 
       type: String, 
-      minlength : 3,
+      minlength : 2,
       maxlength : 50,
-      required: true }
+      required: true },
+
+      start : {
+        type :  String,
+        minlength : 2,
+        maxlength : 10,
+        required : true
+
+      },
+
+      end : {
+        type : String ,
+        minlength : 2,
+        maxlength : 10,
+        required : true,
+      }
+
+
   }, {
     timestamps: true
   });

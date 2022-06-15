@@ -29,8 +29,9 @@ const Login = () => {
     login(data)
     if (user.isAdmin) {
       navigate('/home')
+    } else if (user.isClassteacher) {
+      navigate('/classteacher')
     }
-    console.log(`accessing the user`, user)
   }
 
   return (

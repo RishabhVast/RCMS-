@@ -15,7 +15,7 @@ function Roles() {
 
   return (
     <>
-      <div className=" bg-gradient-to-r from-teal-300 via-green-400 to-teal-300 hover:bg-gradient-to-br  relative flex flex-col justify-top min-h-screen overflow-hidden">
+      <div className="  bg-gradient-to-r from-red-300 via-red-400 to-red-300  relative flex flex-col justify-top min-h-screen overflow-hidden">
         <div className="object-right-top  overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className=" inline-block min-w-full sm:px-6 lg:px-8">
             <div className="flex justify-center overflow-hidden">

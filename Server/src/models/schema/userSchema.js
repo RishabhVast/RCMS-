@@ -6,7 +6,7 @@ module.exports = function (app) {
         firstName: {
             type: String,
             required: true,
-            minlength: 5,
+            minlength: 3,
             maxlength: 50,
           },
           lastName: {
@@ -31,10 +31,10 @@ module.exports = function (app) {
              maxlength : 20,
           },
           userName: {
-            type: String ,
+              type: String ,
               required: true,
-              minlength: 5,
-              maxlength:50,
+              minlength: 3,
+              maxlength: 50,
           },
          
           password: { 
@@ -47,6 +47,7 @@ module.exports = function (app) {
       
           lastLoggedIn :{
             type : Date,
+            
           },
         
           isActive :{
@@ -63,6 +64,18 @@ module.exports = function (app) {
              required : true,
              default : false,
       
+          },
+
+          isSubteacher :{
+            type : Boolean,
+            required : true,
+            default : false,
+          },
+
+          isClassteacher :{
+            type : Boolean,
+            required : true,
+            default : false,
           }
         }, 
       

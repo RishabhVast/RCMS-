@@ -1,11 +1,15 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const validate = require('feathers-validate-joi');
+const { schema } = require('./studentsModel');
+const fetchStandard = require('../userroles/hooks/fetchStandard')
+const fetchDivision = require('../userroles/hooks/fetchDivision')
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [  ],
     find: [],
     get: [],
-    create: [],
+    create: [ validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision()],
     update: [],
     patch: [],
     remove: []

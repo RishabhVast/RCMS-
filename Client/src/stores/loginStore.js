@@ -13,7 +13,6 @@ const useStore = create((set) => ({
   login: async (data) => {
     try {
       const response = await axios.post('/authentication', {...data, strategy: 'local'});
-      console.log(`this is Login response`,response);
       sessionStorage.setItem("token" , response.data.accessToken);
       set((state)=>({users : (state.users = response.data.user)}))
      
