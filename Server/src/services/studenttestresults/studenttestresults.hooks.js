@@ -1,12 +1,17 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const { schema } = require('./studenttestresults.Model');
+const validate = require('feathers-validate-joi');
+const fetchStudent = require('./hooks/fetchStudent');
+const fetchGrade = require('./hooks/fetchGrade');
+const fetchTest = require('./hooks/fetchTest');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [ ],
     find: [],
     get: [],
-    create: [],
-    update: [],
+    create: [validate.form(schema , {abortEarly : false}), fetchGrade(), fetchStudent() , fetchTest()  ],
+    update: [validate.form(schema , {abortEarly : false}), fetchGrade(), fetchStudent() , fetchTest() ],
     patch: [],
     remove: []
   },

@@ -4,6 +4,8 @@ import loginStore from '../../stores/loginStore'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -20,18 +22,19 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const login = loginStore((state) => state.login)
+  let login = loginStore((state) => state.login)
   const user = loginStore((state) => state.users)
 
-  // submit handler for the form
-  const onSubmitHandler = (data) => {
-    // login function from the loginStore
-    login(data)
+  useEffect(() => {
     if (user.isAdmin) {
       navigate('/home')
     } else if (user.isClassteacher) {
       navigate('/classteacher')
     }
+  }, [user])
+
+  const onSubmitHandler = (data) => {
+    login(data)
   }
 
   return (

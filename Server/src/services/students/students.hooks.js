@@ -10,7 +10,7 @@ module.exports = {
     find: [],
     get: [],
     create: [ validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision()],
-    update: [],
+    update: [validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision()],
     patch: [],
     remove: []
   },

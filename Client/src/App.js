@@ -23,6 +23,11 @@ import Classteacher from "./component/pages/Classteacher";
 import Subteacher from "./component/pages/Subteacher";
 import Subtdash from "./component/pages/Subtdash";
 import Studentform from "./component/forms/Studentform";
+import Reports from "./component/pages/Reports";
+import Result from "./component/pages/Result";
+import Test from "./component/pages/Test";
+import TestForm from "./component/forms/TestForm";
+import ResultForm from "./component/forms/ResultForm";
 
 function App() {
   return (
@@ -71,18 +76,26 @@ function App() {
           <Route path="/classteacher"  element={<Classteacher />} >
           <Route path="dashboard" element={<Classtdash />} />
           <Route path="students" element={<Students />} />
+          <Route path="reports" element={<Reports />} />
           <Route path="studentsform" element={<Studentform />} />
-
+          {/* /: studentId stores the id in params */}
+          <Route path="studentsform/:studentId" element={<Studentform />} />
+           
        
           </Route>
-         
            <Route path="/subteacher" element={<Subteacher />} >
-            
            <Route path="subtdashboard" element={<Subtdash />} />
-         
-
-
+           <Route path="result" element={<Result/>} />
+           <Route path="resultform" element={<ResultForm/>} />
+           <Route path="resultform/:testId" element={<ResultForm/>} />
+           <Route path="test" element={<Test />} />
+           <Route path="testform" element={<TestForm/>} />
            </Route>
+
+
+
+
+           
            <Route
             path="*"
             element={

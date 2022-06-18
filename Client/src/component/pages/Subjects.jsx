@@ -9,7 +9,7 @@ const Subjects = () => {
 
   useEffect(() => {
     retrieveSubjects()
-  }, [subjects])
+  }, [])
 
   let counter = 1
 
@@ -63,7 +63,9 @@ const Subjects = () => {
                           type="button"
                           className="text-white bg-gradient-to-br from-red-500 to-red-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                           onClick={() => {
-                            deleteSubject(subject._id)
+                            deleteSubject(subject._id).then(() =>
+                              retrieveSubjects(),
+                            )
                           }}
                         >
                           Delete

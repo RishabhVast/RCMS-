@@ -2,7 +2,7 @@
 // 
 // See http://mongoosejs.com/docs/models.html
 
-const { required } = require('joi');
+
 
 // for more of what you can do here.
 module.exports = function (app) {

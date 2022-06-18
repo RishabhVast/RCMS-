@@ -2,10 +2,12 @@ import React from 'react'
 
 const Subtdash = () => {
   return (
-    <div className="container">
+    <div className="container font-serif">
       <main class="flex-col bg-indigo-50 w-full ml-4 pr-6">
         <div class="flex justify-between p-4 bg-white mt-3 rounded-xl shadow-lg">
-          <h1 class="text-xl font-bold text-gray-700">Welcome to xfitkids</h1>
+          <h1 class="text-xl font-bold text-gray-700">
+            Welcome to RCMS Subject Teacher
+          </h1>
           <div class="flex justify-between w-2/5">
             <div class="flex items-center border-2 p-2 rounded-xl">
               <svg

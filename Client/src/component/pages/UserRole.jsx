@@ -9,7 +9,7 @@ const UserRole = () => {
 
   useEffect(() => {
     retrieveUserRole()
-  }, [users])
+  }, [])
 
   let counter = 1
 
@@ -117,7 +117,7 @@ const UserRole = () => {
                   <button
                     className="px-5 py-2 ml-4 border-white border text-white rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none"
                     onClick={() => {
-                      deleteUser(user._id)
+                      deleteUser(user._id).then(() => retrieveUserRole())
                     }}
                   >
                     Delete

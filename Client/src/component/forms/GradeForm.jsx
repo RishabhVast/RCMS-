@@ -38,7 +38,7 @@ const GradesForm = () => {
     setValue('_id', grade._id)
   }, [])
 
-  const navigate = useNavigate('/home/grades')
+  const navigate = useNavigate()
 
   const onSubmitHandler = (data) => {
     if (!data._id) {

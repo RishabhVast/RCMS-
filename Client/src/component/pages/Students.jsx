@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import studentStore from '../../stores/studentStore'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 const Students = () => {
   const students = studentStore((state) => state.students)
@@ -10,7 +11,7 @@ const Students = () => {
 
   useEffect(() => {
     retrieveStudents()
-  }, [students])
+  }, [])
 
   return (
     <div className="students-container">
@@ -51,11 +52,11 @@ const Students = () => {
           <thead className="font-bold ">
             <tr className="text-lg bg-black">
               <th className="px-6 py-3 border-b-2 border-black text-left  leading-4 text-white tracking-wider">
-                FIRST NAME
+                STUDENTS
               </th>
 
               <th className="px-6 py-3 border-b-2 border-black text-left  leading-4 text-white tracking-wider">
-                LAST NAME
+                DOB
               </th>
               <th className="px-6 py-3 border-b-2 border-black text-left  leading-4 text-white tracking-wider">
                 STANDARD
@@ -82,11 +83,11 @@ const Students = () => {
             {students.map((student) => (
               <tr className=" border-b-2 border-black" key={student._id}>
                 <td className="px-6 py-4 whitespace-no-wrap  font-bold leading-5">
-                  {student.firstName}
+                  {student.firstName} {student.middleName} {student.lastName}
                 </td>
 
                 <td className="px-6 py-4 whitespace-no-wrap   font-bold leading-5">
-                  {student.lastName}
+                  {moment(student.dob).format('DD-MMM-yyyy')}
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap   font-bold leading-5">
                   {student.standard.name}
@@ -99,20 +100,24 @@ const Students = () => {
                 </td>
 
                 <td className="px-6 py-4 whitespace-no-wrap   font-bold leading-5">
-                  {student.parents[0].firstName}
+                  {student.parents[0].firstName} {student.parents[0].lastName}
+                  <br></br>
+                  {student.parents[0].email}
                 </td>
 
                 <td className="px-6 py-4 whitespace-no-wrap   font-bold leading-5">
                   {student.isActive.toString()}
                 </td>
                 <td className=" px-6 py-4   whitespace-no-wrap   font-bold leading-5 flex mr-20">
-                  <button className="px-5 py-2 border-white border text-white rounded transition duration-300 hover:bg-green-700 hover:text-white focus:outline-none">
-                    Update
-                  </button>
+                  <Link to={`/classteacher/studentsform/${student._id}`}>
+                    <button className="px-5 py-2 border-white border text-white rounded transition duration-300 hover:bg-green-700 hover:text-white focus:outline-none">
+                      Update
+                    </button>
+                  </Link>
                   <button
                     className="px-5 py-2 ml-4 border-white border text-white rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none"
                     onClick={() => {
-                      deleteStudents(student._id)
+                      deleteStudents(student._id).then(() => retrieveStudents())
                     }}
                   >
                     Delete

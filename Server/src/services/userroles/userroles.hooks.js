@@ -14,7 +14,7 @@ module.exports = {
     find: [],
     get: [],
     create: [ validate.form(schema , {abortEarly : false}), fetchStandard() , fetchDivision(), fetchSubject(), fetchUser(), fetchRole()],
-    update: [ validate.form(schema , {abortEarly : false})],
+    update: [ validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision(), fetchSubject(), fetchUser(), fetchRole()],
     patch: [],
     remove: []
   },

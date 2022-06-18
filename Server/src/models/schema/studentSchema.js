@@ -6,6 +6,7 @@ module.exports = function (app) {
   const getStandardSchema = require('./standardSchema');
   const getDivisionSchema = require('./divisionSchema');
 
+ 
 
     const mongooseClient = app.get('mongooseClient');
     const { Schema } = mongooseClient;
@@ -52,7 +53,13 @@ module.exports = function (app) {
 
         dob :{
           type : Date,
-          required : true
+          
+         
+        },
+
+        isActive : {
+          type : Boolean,
+          default : false
         },
       
         parents : [
@@ -119,10 +126,7 @@ module.exports = function (app) {
           }
         ],
        
-        isActive : {
-          type : Boolean,
-          default : false
-        }
+      
 
    
 
