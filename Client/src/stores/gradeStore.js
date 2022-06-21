@@ -7,7 +7,7 @@ const gradeStore = create((set)=>({
 grades : [],
 
 
-retriveGrades : async ()=>{
+retrieveGrades : async ()=>{
     const response =  await axios.get('grades');
     console.log(` in the retrieve`, response);
     const { data } = response.data

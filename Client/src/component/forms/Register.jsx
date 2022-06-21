@@ -14,8 +14,6 @@ const Register = () => {
     phone: yup.string().min(10).max(10).required(),
     userName: yup.string().min(3).max(50).required(),
     password: yup.string().min(8).max(1024).required(),
-    isSubteacher: yup.boolean().default(false).required(),
-    isClassteacher: yup.boolean().default(false).required(),
   })
 
   const {
@@ -29,19 +27,24 @@ const Register = () => {
   const navigate = useNavigate()
 
   const onSubmitHandler = (data) => {
-    addUser(data)
-    console.log(`in the submit `, data)
+    addUser(data).then(navigate('/'))
   }
 
   return (
     <>
-      <div className=" min-h-screen bg-teal-900  text-black flex flex-col justify-center items-center ">
+      <div className=" min-h-screen bg-cyan-900  text-black flex flex-col justify-center items-center ">
         <form
           class="w-full max-w-lg mt-3"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div class=" -mx-3 mb-6 border border-white rounded-lg shadow-lg   ">
+            <label
+              class="block uppercase tracking-wide text-white text-xs font-bold mb-2  mt-8 font-serif flex justify-center text-2xl"
+              for=""
+            >
+              REGISTER
+            </label>
+            <div class="w-full px-3 mb-6 md:mb-0 mt-4">
               <label
                 class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
                 for="grid-first-name"
@@ -49,7 +52,7 @@ const Register = () => {
                 First Name
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white border  border-black"
                 id="firstName"
                 type="text"
                 placeholder="Enter name"
@@ -62,7 +65,7 @@ const Register = () => {
                 {errors.firstName?.message}
               </div>
             </div>
-            <div class="w-full md:w-1/2 px-3">
+            <div class="w-full  px-3 mt-4">
               <label
                 class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
                 for="grid-last-name"
@@ -70,7 +73,7 @@ const Register = () => {
                 Last Name
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="lastName"
                 type="text"
                 placeholder="Enter lastname"
@@ -84,16 +87,16 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap -mx-3 mb-6 border border-white rounded-lg shadow-lg  mt-4">
             <div class="w-full px-3">
               <label
-                class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                class="block uppercase tracking-wide text-white text-xs font-bold mb-2 mt-4"
                 for="grid-email"
               >
                 ENTER EMAIL
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="email"
                 type="email"
                 placeholder="Enter your Email"
@@ -107,16 +110,16 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap -mx-3 mb-6  border  border-white rounded-lg shadow-lg ">
             <div class="w-full px-3">
               <label
-                class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                class="block uppercase tracking-wide text-white text-xs font-bold mb-4 mt-4"
                 for="grid-password"
               >
                 Password
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="password"
                 type="password"
                 placeholder="******************"
@@ -128,21 +131,21 @@ const Register = () => {
               >
                 {errors.password?.message}
               </div>
-              <p class="text-white text-xs italic">
+              <p class="text-white text-xs italic mb-2  ">
                 Make it as long and as crazy as you'd like
               </p>
             </div>
           </div>
-          <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="flex flex-wrap -mx-3 mb-6  border  border-white rounded-lg shadow-lg hover: dark:shadow-lg">
             <div class="w-full px-3">
               <label
-                class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                class="block uppercase tracking-wide text-white text-xs font-bold mb-2 mt-4"
                 for="phone"
               >
                 Phone
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-900 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="phone"
                 type="text"
                 placeholder="Enter Phone Number"
@@ -156,16 +159,16 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <div class="flex flex-wrap -mx-3 mb-2">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div class="flex flex-wrap -mx-3 mb-2  border  border-white rounded-lg shadow-lg">
+            <div class="w-full md:w-full px-3 mb-6 md:mb-0">
               <label
-                class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                class="block uppercase tracking-wide text-white text-xs font-bold mb-2 mt-4"
                 for="grid-username"
               >
                 USERNAME
               </label>
               <input
-                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                class="appearance-none block w-full bg-gray-200 text-black font-bold border border-gray-900 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="userName"
                 type="text"
                 placeholder="Enter UserName"
@@ -178,76 +181,15 @@ const Register = () => {
                 {errors.userName?.message}
               </div>
             </div>
-            <div class="w-full md:w-1/2 px-8 mb-6 md:mb-0 text-white  font-bold">
-              <label
-                class="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-                htmlFor="exampleCheck25"
-                for="grid-isSubteacher"
-              >
-                YOUR ROLE
-              </label>
-              <div className="form-group form-check mt-2">
-                <input
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 text-red-600  rounded border  border-black focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 border b-2 border-black"
-                  id=""
-                  {...register('isSubteacher')}
-                />{' '}
-                Subject Teacher
-                <div
-                  class=" rounded-lg  mb-2 text-base text-red-400 mb-3"
-                  role="alert"
-                >
-                  {errors.isSubteacher?.message}
-                </div>
-              </div>
-              <input
-                type="checkbox"
-                value=""
-                class=" w-4 h-4 text-red-600  rounded border  border-black focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 border b-2 border-black"
-                id=""
-                {...register('isClassteacher')}
-              />{' '}
-              Class Teacher
-              <div
-                class=" rounded-lg  mb-2 text-base text-red-400 mb-3"
-                role="alert"
-              >
-                {errors.isClassteacher?.message}
-              </div>
-            </div>
           </div>
-          <div className=" flex   justify-center">
+          <div className=" flex mt-10  justify-center">
             <button
-              className="  bg-green-600 hover:bg-green-800 text-black  fon8-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border border-black rounded-lg"
+              className="  bg-green-600 hover:bg-green-800 text-black  fon8-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border border-white rounded-lg"
               type="submit"
             >
               Submit
             </button>
           </div>
-          <span className=" flex justify-center mt-4">
-            <Link to="/">
-              <button
-                type="button"
-                class="text-white bg-red-900 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 text-black font-bold text-sm border border-black"
-              >
-                Go to Login
-                <svg
-                  class="w-5 h-5 ml-2 -mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-            </Link>
-          </span>
         </form>
       </div>
     </>

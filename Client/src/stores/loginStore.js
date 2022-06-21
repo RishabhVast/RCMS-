@@ -4,12 +4,10 @@ import axios from  "../http.common"
 
 const useStore = create((set) => ({
   users : [],
-  loading: false,
-  hasErrors: false, 
+  
 
 
-
-  // login function  created for doing post in login
+  // login function  created for post in login
   login: async (data) => {
     try {
       const response = await axios.post('/authentication', {...data, strategy: 'local'});
@@ -19,7 +17,7 @@ const useStore = create((set) => ({
     }
 
  catch (err) {
-    set(() => ({ hasErrors: true, loading: false }));
+    console.log(err);
   }
 
   }

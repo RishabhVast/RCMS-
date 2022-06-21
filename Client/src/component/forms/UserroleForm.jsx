@@ -41,7 +41,10 @@ const UserroleForm = () => {
 
   //retrieve the user
   const retrieveUser = userStore((state) => state.retrieveUser)
-  const users = userStore((state) => state.users)
+  const usersData = userStore((state) => state.users)
+
+  const users = usersData.filter((user) => user.isAdmin !== true)
+  console.log(users)
 
   //retrieve the role
   const roles = roleStore((state) => state.roles)

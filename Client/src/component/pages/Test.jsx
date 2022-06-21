@@ -16,7 +16,7 @@ const Test = () => {
 
   return (
     <div className="bg-gray-300  font-serif">
-      <div className="align-middle  inline-block w-full py-4 overflow-hidden  bg-gray-900 shadow-lg px-12 ">
+      <div className="align-middle  inline-block w-full py-4 overflow-hidden  bg-gray-900 shadow-lg px-12 border-4 border-white rounded-lg">
         <div className="flex justify-between ">
           <div className="flex flex-wrap items-stretch w-full h-full  relative">
             <div className="flex justify-center">
@@ -50,22 +50,32 @@ const Test = () => {
         <div className=" inline-block w-full sm:px-6 lg:px-8">
           <div class="relative overflow-x-auto shadow-md ">
             <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400  ">
-              <thead class="text-2xl text-white  uppercase bg-gray-700 dark:bg-gray-700  dark:text-white  h-16">
+              <thead class="text-lg text-white  uppercase bg-gray-800 dark:bg-gray-900  dark:text-white  h-16">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-6 py-2">
                     SR.NO
                   </th>
-                  <th scope="col" class="px-6 py-3">
-                    TEST LIST
+                  <th scope="col" class="px-6 py-2">
+                    STANDARD
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-6 py-2">
+                    DIVISION
+                  </th>
+
+                  <th scope="col" class="px-6 py-2">
+                    TEST NAME
+                  </th>
+                  <th scope="col" class="px-6 py-2">
+                    TEST SUBJECT
+                  </th>
+                  <th scope="col" class="px-6 py-2">
                     CREATE RESULT
                   </th>
 
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-6 py-2">
                     DELETE
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" class="px-6 py-2">
                     <span class="sr-only">Edit</span>
                   </th>
                 </tr>
@@ -73,15 +83,19 @@ const Test = () => {
               <tbody>
                 {tests.map((test) => (
                   <tr
-                    class="bg-white border-b dark:bg-gray-400 dark:border-gray-700 text-black font-bold text-lg"
+                    class="border-b dark:bg-gray-700 dark:border-white text-white font-bold text-sm font-serif"
                     key={test._id}
                   >
-                    <td className="px-6 py-4 ">{counter++}</td>
+                    <td className="px-6 py-2 ">{counter++}</td>
+                    <td className="px-6 py-2 ">{test.standard?.name}</td>
+                    <td className="px-6 py-2 ">{test.division?.name}</td>
+
                     <td className="">{test.name}</td>
-                    <td className="px-6 py-4">
+                    <td className="">{test.subject?.name}</td>
+                    <td className="px-6 py-2">
                       <button
                         type="button"
-                        className="text-white  font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2 bg-blue-600"
+                        className="text-white  font-medium rounded-lg px-5 py-2 text-center mr-2  bg-blue-800"
                       >
                         <Link to={`/subteacher/resultform/${test._id}`}>
                           Create Result
@@ -89,10 +103,10 @@ const Test = () => {
                       </button>
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-2">
                       <button
                         type="button"
-                        className="text-white  font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2 bg-red-600"
+                        className="text-white  font-medium rounded-lg px-5 py-2 text-center mr-2  bg-red-700"
                         onClick={() => {
                           deleteTest(test._id).then(() => retrieveTest())
                         }}
@@ -100,7 +114,7 @@ const Test = () => {
                         Delete
                       </button>
                     </td>
-                    <tr className="bg-white border-black" />
+                    <tr className="bg-white border-white" />
                   </tr>
                 ))}
               </tbody>

@@ -1,17 +1,18 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { schema } = require('./studenttestresults.Model');
-const validate = require('feathers-validate-joi');
+//const validate = require('feathers-validate-joi');
 const fetchStudent = require('./hooks/fetchStudent');
 const fetchGrade = require('./hooks/fetchGrade');
 const fetchTest = require('./hooks/fetchTest');
+const calculateResult = require('./hooks/calculateMarks')
 
 module.exports = {
   before: {
     all: [ ],
     find: [],
     get: [],
-    create: [validate.form(schema , {abortEarly : false}), fetchGrade(), fetchStudent() , fetchTest()  ],
-    update: [validate.form(schema , {abortEarly : false}), fetchGrade(), fetchStudent() , fetchTest() ],
+    create: [ calculateResult() ,fetchGrade(), fetchStudent() , fetchTest()],
+    update: [  fetchGrade(), fetchStudent() , fetchTest() ],
     patch: [],
     remove: []
   },
@@ -20,7 +21,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [  ],
     update: [],
     patch: [],
     remove: []

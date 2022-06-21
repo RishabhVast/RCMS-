@@ -47,6 +47,7 @@ module.exports = function (app) {
       
           lastLoggedIn :{
             type : Date,
+            default : Date.now()
             
           },
         
@@ -57,28 +58,15 @@ module.exports = function (app) {
              default : false,
       
           },
-          
+        
           isAdmin :{
-          
-             type : Boolean,
-             required : true,
-             default : false,
-      
-          },
-
-          isSubteacher :{
             type : Boolean,
-            required : true,
-            default : false,
-          },
-
-          isClassteacher :{
-            type : Boolean,
-            required : true,
-            default : false,
+            default :  false
           }
-        }, 
-      
+          
+        },
+
+         
       
         {  
           timestamps: true

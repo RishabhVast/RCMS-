@@ -1,11 +1,11 @@
 module.exports = () => {
     return {
-        firstName: "Rishabbh",
-        lastName: "Admin",
-        email: "rishbhs@valueaddsofttech.com",
+        firstName: "Rishabh",
+        lastName: "Singh",
+        email: "rishabhs@valueaddsofttech.com",
         phone: "+91-7020402206",
         userName: "adminRishabh",
-        password: "123456789",
+        password: "12345678",
         isActive: true,
         isAdmin : true,
         

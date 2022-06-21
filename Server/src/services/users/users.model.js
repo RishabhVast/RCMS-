@@ -8,10 +8,9 @@ _id: objectId(),
  email    :  Joi.string().min(5).max(255).required(),
  phone    :  Joi.string().min(10).max(20).required(),
  password :  Joi.string().min(8).max(1024).required(),
- isAdmin  :  Joi.boolean().default(false),
  isActive :  Joi.boolean().default(false),
- isSubteacher : Joi.boolean().default(false),
- isClassteacher : Joi.boolean().default(false)
+ isAdmin   : Joi.boolean().default(false)
+ 
   
 
 });

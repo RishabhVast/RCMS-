@@ -42,13 +42,13 @@ const Subjects = () => {
                       className=" bg-gray-300  border border-black"
                       key={subject._id}
                     >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">
+                      <td className="px-6 py-2 whitespace-nowrap text-sm  text-gray-900 font-bold">
                         {counter++}
                       </td>
-                      <td className="font-bold text-black font-dark px-6 py-4 whitespace-nowrap">
+                      <td className="font-bold text-black font-dark px-6 py-2 whitespace-nowrap">
                         {subject.name}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                         <button
                           type="button"
                           className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
@@ -58,7 +58,7 @@ const Subjects = () => {
                           </Link>
                         </button>
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                      <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                         <button
                           type="button"
                           className="text-white bg-gradient-to-br from-red-500 to-red-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
