@@ -1,65 +1,222 @@
-import React, { useEffect } from 'react'
-import studentStore from '../../stores/studentStore'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import testStore from '../../stores/testStore'
+import divisionStore from '../../stores/divisionStore'
+import standardStore from '../../stores/standardStore'
+import resultStore from '../../stores/resultStore'
 
-const Result = () => {
-  //student store to map the data in the table for list of students
-  const students = studentStore((state) => state.students)
-  const retrieveStudents = studentStore((state) => state.retrieveStudents)
+const Test = () => {
+  const tests = testStore((state) => state.tests)
+  const retrieveTest = testStore((state) => state.retrieveTest)
+
+  const results = resultStore((state) => state.results)
+  const retrieveResult = resultStore((state) => state.retrieveResult)
+  const deleteResult = resultStore((state) => state.deleteResult)
+
+  // retrieve the division
+  const divisions = divisionStore((state) => state.divisions)
+  const retrieveDivisions = divisionStore((state) => state.retrieveDivisions)
+
+  //   retrieving the standard
+  const standards = standardStore((state) => state.standards)
+  const retrieveStandards = standardStore((state) => state.retrieveStandards)
 
   useEffect(() => {
-    retrieveStudents()
+    retrieveTest()
+    retrieveResult()
+    retrieveStandards()
+    retrieveDivisions()
   }, [])
 
   let counter = 1
 
+  const [standard, setStandard] = useState('')
+  const [division, setDivision] = useState('')
+  const [test, setTest] = useState('')
+  const filter = [standard, division, test]
+
   return (
     <div className="bg-gray-300  font-serif">
-      <form className="font-serif ">
-        <div className=" ">
-          <div className="">
-            <table className=" mt-1   text-sm text-center text-gray-500 dark:text-gray-400 w-full  ">
-              <thead className="text-lg text-white  uppercase bg-gray-900 dark:bg-gray-900  dark:text-white  ">
+      <div className="align-middle  inline-block w-full py-4 overflow-hidden  bg-gray-900 shadow-lg px-12 border-4 border-white rounded-lg">
+        <div className="flex justify-between ">
+          <div className="flex flex-wrap items-stretch w-full h-full">
+            <div className="flex justify-center">
+              <div className="mb-3 ">
+                <div className="flex justify-center">
+                  <div className=" xl:w-96 ">
+                    <div className="container mx-auto py-4 text-black mt-6">
+                      <input
+                        id="searchfield"
+                        type="search"
+                        placeholder="Search For Students"
+                        autofocus="autofocus"
+                        className="w-full text-black transition focus:outline-none focus:border-transparent p-2 appearance-none leading-normal   rounded-lg"
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="py-4 text-black flex  ml-20">
+                    <div className="w-full ml-2">
+                      <label
+                        for="countries"
+                        class=" mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >
+                        Select an Standard
+                      </label>
+                      <select
+                        id="countries"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value={standard}
+                        onChange={(e) => setStandard(e.target.value)}
+                      >
+                        <option selected>Choose a Standard</option>
+                        {standards.map((standard) => (
+                          <option key={standard._id} value={standard._id}>
+                            {standard.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="w-full ml-2">
+                      <label
+                        for="countries"
+                        class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >
+                        Select an Division
+                      </label>
+                      <select
+                        id="countries"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+                        value={division}
+                        onChange={(e) => setDivision(e.target.value)}
+                      >
+                        <option selected>Choose a Division</option>
+                        {divisions.map((division) => (
+                          <option key={division._id} value={division._id}>
+                            {division.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="w-full ml-2">
+                      <label
+                        for=""
+                        class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >
+                        Select an Test
+                      </label>
+                      <select
+                        id=""
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value={test}
+                        onChange={(e) => setTest(e.target.value)}
+                      >
+                        <option selected>Choose a Test</option>
+                        {tests.map((test) => (
+                          <option key={test._id} value={test._id}>
+                            {test.name} {test.subject?.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="mt-6">
+                      <button
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ml-2 mr-2"
+                        onClick={() => console.log('in the result ', filter)}
+                      >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="object-center   overflow-x-auto sm:-mx-6 lg:-mx-8 font-bold ">
+        <div className=" inline-block w-full sm:px-6 lg:px-8">
+          <div class="relative overflow-x-auto shadow-md ">
+            <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400  ">
+              <thead class="text-lg text-white  uppercase bg-gray-800 dark:bg-gray-900  dark:text-white  h-16 text-left">
                 <tr>
-                  <th scope="col" className=" px-6 py-2 text-left">
+                  <th scope="col" class="px-6 py-2">
                     SR.NO
                   </th>
-                  <th scope="col" className=" px-6 py-2 text-left">
+                  <th scope="col" class="px-6 py-2">
                     STUDENTS
                   </th>
-                  <th scope="col" className=" px-6 py-2 text-left">
-                    MARKS OBTAINED
+
+                  <th scope="col" class="px-6 py-2">
+                    SUBJECT
                   </th>
-                  <th scope="col" className=" px-6 py-2 text-left">
-                    GRADE
+                  <th scope="col" class="px-6 py-2">
+                    TESTS
+                  </th>
+                  <th scope="col" class="px-6 py-2">
+                    PARENTS
+                  </th>
+                  <th scope="col" class="px-6 py-2">
+                    OBTAINED MARKS
+                  </th>
+                  <th scope="col" class="px-6 py-2">
+                    ACTIONS
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {students.map((student) => (
+                {results.map((result) => (
                   <tr
-                    className="bg-white border-b dark:bg-gray-600 dark:border-gray-700 text-white font-bold text-sm mt-4"
-                    key={student._id}
+                    class="border-b dark:bg-gray-700 dark:border-white text-white font-bold text-sm font-serif text-left"
+                    key={result._id}
                   >
-                    <td className="text-left  px-6  py-2 ">{counter++}</td>
-                    <td className="flex justify-left   px-6   py-2">
-                      {' '}
-                      {student.firstName} {student.middleName}{' '}
-                      {student.lastName}
+                    <td className="px-6 py-2 ">{counter++}</td>
+                    <td className="px-6 py-2 ">
+                      {result.student?.firstName} {result.student?.middleName}{' '}
+                      {result.student?.lastName}
                     </td>
 
-                    <td className="justify-left   px-6  py-2"></td>
+                    <td className="px-6 py-2 ">{result.test?.subject?.name}</td>
+                    <td className="px-6 py-2 ">{result.test?.name}</td>
+                    <td className="px-6 py-2  text-center  uppercase">
+                      {result.student?.parents[0].firstName}
+                      <br />
+                      {result.student?.parents[0].lastName}
+                    </td>
+                    <td className="px-6 py-2 text-center">
+                      {result.obtainedMarks}
+                    </td>
+                    <td className="px-6 py-2 flex  gap-2">
+                      <button className="px-4 py-1 text-sm text-white bg-green-600 rounded">
+                        <Link
+                          to={`/subteacher/resultform/${result._id}`}
+                          class="font-medium text-white dark:text-white hover:underline"
+                        >
+                          Edit
+                        </Link>
+                      </button>
+                      <button
+                        className="px-4 py-1 text-sm text-white bg-red-600 rounded"
+                        onClick={() => {
+                          deleteResult(result._id).then(() => retrieveResult())
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
 
-                    <td className="  px-6   py-2"></td>
-                    <tr className="bg-white border-black" />
+                    <tr className="bg-white border-white" />
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
 
-export default Result
+export default Test

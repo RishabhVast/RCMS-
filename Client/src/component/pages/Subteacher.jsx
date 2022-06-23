@@ -8,7 +8,7 @@ const Subteacher = () => {
 
   return (
     <div className="flex bg-gray-300   font-serif">
-      <aside class=" w-1/10 bg-pink-900 shadow-lg h-screen">
+      <aside class=" w-1/10 bg-black shadow-lg h-screen">
         <div class="flex items-center justify-center p-4 shadow-lg">
           <div>
             <img

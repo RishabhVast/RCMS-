@@ -28,6 +28,7 @@ import Result from "./component/pages/Result";
 import Test from "./component/pages/Test";
 import TestForm from "./component/forms/TestForm";
 import ResultForm from "./component/forms/ResultForm";
+import Dummy from './component/pages/Dummy'
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
       <Route> 
           <Route path="/" element={<Login />} />
           <Route path="register" element={<Register />} />
-         
+          <Route path='/dummy' element={<Dummy />}/>
          
        
           <Route path="/home" element={<Home />} >

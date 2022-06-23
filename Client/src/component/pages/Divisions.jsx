@@ -14,96 +14,94 @@ const Divisions = () => {
   let counter = 1
 
   return (
-    <div className="bg-gradient-to-r from-yellow-200 via-purple-400 to-yellow-200 relative flex flex-col justify-top min-h-screen overflow-hidden">
-      <div className=" overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className=" inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="  flex justify-center overflow-hidden">
-            <table className="absolute mt-10 text-center w-1/2">
-              <thead className=" font-bold font-serif border border-black bg-gray-800">
-                <tr>
-                  <th scope="col" className=" font-bold text-white px-6 py-4">
-                    #
-                  </th>
-                  <th scope="col" className=" font-bold text-white px-6 py-4">
-                    Divisions
-                  </th>
-                  <th scope="col" className=" font-bold text-white px-6 py-4">
-                    Update
-                  </th>
-                  <th scope="col" className=" text-white px-6 py-4">
-                    Delete
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {divisions.map((division) => (
-                  <tr
-                    className=" bg-gray-300  border border-black"
-                    key={division._id}
-                  >
-                    <td className="px-6 py-2 whitespace-nowrap text-sm  text-gray-900 font-bold">
-                      {counter++}
-                    </td>
-                    <td className="font-bold text-black font-dark px-6 py-2 whitespace-nowrap">
-                      {division.name}
-                    </td>
-                    <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                      <button
-                        type="button"
-                        className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                      >
-                        <Link to={`/home/division/dform/${division._id}`}>
-                          Update
-                        </Link>
-                      </button>
-                    </td>
-                    <td className="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                      <button
-                        type="button"
-                        className="text-white bg-gradient-to-br from-red-500 to-red-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                        onClick={() => {
-                          deleteDivision(division._id).then(() =>
-                            retrieveDivisions(),
-                          )
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                    <tr className="bg-white border-black" />
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="absolute mt-10 left-8 grid justify-items-start p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Adding a new Division!
-              </h5>
-
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Click on the Button below to add!
-              </p>
-              <Link
-                to="/home/division/dform"
-                className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Add Divisions
-                <svg
-                  className="ml-2 -mr-1 w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+    <div className="bg-gray-400 relative flex flex-col justify-top min-h-screen overflow-hidden">
+      <div className="  justify items-center overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8  ">
+        <div className="align-middle  inline-block w-full py-4 overflow-hidden bg-cyan-900 shadow-lg px-12 ">
+          <div className="flex justify-between ">
+            <div className="flex flex-wrap items-stretch w-full h-full  relative">
+              <div className="flex justify-center">
+                <div className="mb-3 xl:w-96">
+                  <div className="container mx-auto py-4 text-black">
+                    <input
+                      type="search"
+                      value={''}
+                      onChange={''}
+                      placeholder="Search..."
+                      autofocus="autofocus"
+                      className="w-full text-black transition focus:outline-none focus:border-transparent p-2 appearance-none leading-normal   rounded-lg"
+                    ></input>
+                  </div>
+                </div>
+              </div>
+              <Link to="/home/division/dform">
+                <button
+                  type="button"
+                  className="absolute right-0 py-2.5 px-5 mr-2 mb-2  mt-2 text-sm font-bold text-white focus:outline-none bg-white rounded-lg border border-white  border-white bg-transparent hover:bg-blue-700 "
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+                  Add Divisions
+                </button>
               </Link>
             </div>
           </div>
         </div>
+      </div>
+      <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-gray-600 shadow-dashboard px-8 pt-10 rounded-bl-lg rounded-br-lg bg-gray-600 flex justify-center">
+        <table className="w-1/2  ">
+          <thead className="font-bold  text-left">
+            <tr className="text-lg bg-black">
+              <th className="px-6 py-3 border-b-2 border-black leading-4 text-white tracking-wider">
+                Sr.No
+              </th>
+              <th className="px-6 py-3 border-b-2 border-black  leading-4 text-white tracking-wider">
+                Divisions
+              </th>
+
+              <th className="px-6 py-3 border-b-2 border-black  leading-4 text-white tracking-wider">
+                UPDATE
+              </th>
+              <th className="px-6 py-3 border-b-2 border-black  leading-4 text-white tracking-wider">
+                DELETE
+              </th>
+            </tr>
+          </thead>
+          <tbody className=" text-left bg-cyan-900 text-white ">
+            {divisions.map((division) => (
+              <tr className=" border-b-2 border-black  " key={division._id}>
+                <td className="px-6 py-2 whitespace-no-wrap ">
+                  <div>
+                    <div className="font-bold leading-5 text-white">
+                      {' '}
+                      #{counter++}
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-2 whitespace-no-wrap ">
+                  <div className="font-bold leading-5 "> {division.name}</div>
+                </td>
+
+                <td className=" px-6 py-2 hitespace-no-wrap font-bold leading-5">
+                  <Link to={`/home/division/dform/${division._id}`}>
+                    <button className="px-5 py-2 border-white border text-white rounded transition duration-300 hover:bg-green-700 hover:text-white focus:outline-none">
+                      Update
+                    </button>
+                  </Link>
+                </td>
+                <td className=" px-6 py-2 hitespace-no-wrap font-bold leading-5">
+                  <button
+                    className="px-5 py-2 ml-4 border-white border text-white rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none"
+                    onClick={() => {
+                      deleteDivision(division._id).then(() =>
+                        retrieveDivisions(),
+                      )
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )

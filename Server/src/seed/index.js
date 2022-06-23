@@ -20,7 +20,7 @@ function ifEmptyCreate(name, data){
             }
     
         } 
-        catch(e) {
+        catch(e) { 
             console.log(e);
         }
     }

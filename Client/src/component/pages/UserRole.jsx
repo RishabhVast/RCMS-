@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+
 import useStore from '../../stores/userroleStore'
 import { Link } from 'react-router-dom'
 
@@ -14,16 +15,15 @@ const UserRole = () => {
   let counter = 1
 
   return (
-    <div className="userrole-container bg-gray-200 hover:bg-gray-300 relative flex flex-col justify-top min-h-screen overflow-hidden">
+    <div className="userrole-container  bg-gray-400   relative flex flex-col justify-top min-h-screen overflow-hidden">
       <div className="  justify items-center overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8  ">
-        <div className="align-middle  inline-block w-full py-4 overflow-hidden bg-teal-900 shadow-lg px-12 ">
+        <div className="align-middle  inline-block w-full py-4 overflow-hidden bg-cyan-900 shadow-lg px-12 ">
           <div className="flex justify-between ">
             <div className="flex flex-wrap items-stretch w-full h-full  relative">
               <div className="flex justify-center">
                 <div className="mb-3 xl:w-96">
                   <div className="container mx-auto py-4 text-black">
                     <input
-                      id="searchfield"
                       type="search"
                       placeholder="Search..."
                       autofocus="autofocus"
@@ -74,7 +74,7 @@ const UserRole = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="  bg-teal-900 text-white ">
+          <tbody className="  bg-cyan-900 text-white ">
             {users.map((user) => (
               <tr className=" border-b-2 border-black" key={user._id}>
                 <td className="px-6 py-4 whitespace-no-wrap ">

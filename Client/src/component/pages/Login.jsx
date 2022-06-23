@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import loginStore from '../../stores/loginStore'
-import roleStore from '../../stores/userroleStore'
+
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -22,16 +22,6 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) })
 
   const navigate = useNavigate()
-
-  // userrole store data
-  let userrole = roleStore((state) => state.userroles)
-  let retrieveUserRole = roleStore((state) => state.retrieveUserRole)
-
-  useEffect(() => {
-    retrieveUserRole()
-  }, [])
-
-  console.log(`in the userrole`, userrole)
 
   let login = loginStore((state) => state.login)
   const user = loginStore((state) => state.users)
