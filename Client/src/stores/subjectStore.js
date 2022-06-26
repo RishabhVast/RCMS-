@@ -15,6 +15,12 @@ const useStore = create((set)=>({
         set((state)=> ({ subjects : (state = data)}))
     },
 
+  
+    
+   
+
+    
+
 
     addSubject :  async (data)=>{
         const  response = await axios.post("/subjects", data);

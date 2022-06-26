@@ -1,10 +1,11 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const { schema } = require("./divisions.model");
+const { schema  } = require("./divisions.model");
 const validate = require("feathers-validate-joi");
 
 module.exports = {
   before: {
-    all: [  ],
+    all: [  ], 
+    
     find: [],
     get: [],
     create: [validate.form(schema, { abortEarly: false })],

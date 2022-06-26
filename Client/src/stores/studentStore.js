@@ -1,4 +1,4 @@
-
+  
 import create from 'zustand';
 import axios from '../http.common';
 
@@ -8,7 +8,7 @@ const useStore = create((set)=>({
 
 
     students : [],
-
+     fstudents : [],
 
 
     retrieveStudents : async ()=>{
@@ -18,6 +18,26 @@ const useStore = create((set)=>({
         return response;
 
     },
+
+ 
+     // for getting filtered students in resultform
+    filterStudent : async (filter)=>{
+        console.log(`in the store`,( filter.standard));
+   
+        const response = await axios.get(`students/`,{  
+        params : {
+            
+            'standard._id': filter.standard,
+            'division._id': filter.division
+
+           
+        },   
+    });
+
+        const { data }  = response.data 
+        set((state)=> ({ fstudents : (state = data )}))
+    },
+
 
 
     addStudents : async (data)=>{

@@ -21,10 +21,10 @@
       "audience": "https://yourdomain.com",
       "issuer": "feathers",
       "algorithm": "HS256",
-      "expiresIn": "3d"
+      "expiresIn": "1d"
     },
     "local": {
-      "usernameField": "email",
+      "usernameField": "\\userName",
       "passwordField": "password"
     }
   },

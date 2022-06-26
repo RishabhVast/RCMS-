@@ -44,9 +44,9 @@ const TestForm = () => {
   const retrieveSubjects = subjectStore((state) => state.retrieveSubjects)
 
   useEffect(() => {
-    retrieveStandards()
     retrieveDivisions()
     retrieveSubjects()
+    retrieveStandards()
   }, [])
 
   const navigae = useNavigate()
@@ -57,7 +57,7 @@ const TestForm = () => {
   }
 
   return (
-    <div className="form-container">
+    <div className="form-container text-black">
       <div className=" justify-center ">
         <div class="block p-6 rounded-lg shadow-lg bg-gray-400  w-1/2 ml-40">
           <h1 className="font-bold text-2xl font-serif justify-center items-center">

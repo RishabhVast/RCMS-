@@ -3,10 +3,9 @@ import { useEffect } from 'react'
 import testStore from '../../stores/testStore'
 import studentStore from '../../stores/studentStore'
 import gradeStore from '../../stores/gradeStore'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import axios from '../../http.common'
 
@@ -20,13 +19,17 @@ const ResultForm = () => {
     setValue,
   } = useForm({ resolver: yupResolver(schema) })
 
+  const navigate = useNavigate()
+
   const onSubmitHandler = () => {
     const arr = []
     for (const key of Object.keys(marksArray)) {
+      console.log(`in the keys`, key)
       arr.push(marksArray[key])
     }
     console.log(arr)
     axios.post('studenttestresults', arr)
+    navigate('/subteacher/result')
   }
 
   //test store to display the data on top details of test
@@ -34,8 +37,8 @@ const ResultForm = () => {
   const getTest = testStore((state) => state.getTest)
 
   //student store to map the data in the table for list of students
-  const students = studentStore((state) => state.students)
-  const retrieveStudents = studentStore((state) => state.retrieveStudents)
+  const fstudents = studentStore((state) => state.fstudents)
+  const filterStudent = studentStore((state) => state.filterStudent)
 
   //student store to map the data in the table for list of students
   const grades = gradeStore((state) => state.grades)
@@ -43,17 +46,21 @@ const ResultForm = () => {
 
   useEffect(() => {
     getTest(testId)
-    retrieveStudents()
   }, [])
 
   useEffect(() => {
     retrieveGrades()
   }, [])
 
+  useEffect(() => {
+    filterStudent({
+      standard: test?.standard?._id,
+      division: test?.division?._id,
+    })
+  }, [test])
+
   const params = useParams()
   const testId = params.testId
-  // const test = tests.filter((test) => test && test._id === testId)[0]
-  console.log(`in the returned test`, test)
 
   const marksArray = {}
 
@@ -62,7 +69,6 @@ const ResultForm = () => {
     grades.map((grade) => {
       if (obtainedMarks >= grade.start && obtainedMarks <= grade.end) {
         studentResult = grade._id
-        return studentResult
       }
     })
 
@@ -163,7 +169,7 @@ const ResultForm = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {students.map((student) => (
+                  {fstudents.map((student) => (
                     <tr
                       className="bg-white border-b dark:bg-gray-700 dark:border-white text-white font-bold text-sm mt-4"
                       key={student._id}
@@ -180,6 +186,7 @@ const ResultForm = () => {
                         <div class="flex justify-left">
                           <div class="mb-3 xl:w-96">
                             <input
+                              required
                               type="number"
                               class="form-control
                                   block

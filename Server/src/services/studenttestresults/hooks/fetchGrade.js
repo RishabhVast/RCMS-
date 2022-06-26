@@ -3,6 +3,7 @@ const { hooks } = require("@feathersjs/authentication/lib");
 
 module.exports = function () {
     return async(context)=>{
+        console.log(context);
         if (Array.isArray(context.data)){
             for(const student of context.data) {
                 const gradeId = student.grade;

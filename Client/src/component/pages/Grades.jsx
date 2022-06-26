@@ -24,8 +24,6 @@ const Grade = () => {
                   <div className="container mx-auto py-4 text-black">
                     <input
                       type="search"
-                      value={''}
-                      onChange={''}
                       placeholder="Search..."
                       autofocus="autofocus"
                       className="w-full text-black transition focus:outline-none focus:border-transparent p-2 appearance-none leading-normal   rounded-lg"

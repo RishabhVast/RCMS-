@@ -111,9 +111,11 @@ const UserRole = () => {
                 </td>
 
                 <td className=" px-6 py-4   whitespace-no-wrap   font-bold leading-5">
-                  <button className="px-5 py-2 border-white border text-white rounded transition duration-300 hover:bg-green-700 hover:text-white focus:outline-none">
-                    Update
-                  </button>
+                  <Link to={`/home/userroleform/${user._id}`}>
+                    <button className="px-5 py-2 border-white border text-white rounded transition duration-300 hover:bg-green-700 hover:text-white focus:outline-none">
+                      Update
+                    </button>
+                  </Link>
                   <button
                     className="px-5 py-2 ml-4 border-white border text-white rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none"
                     onClick={() => {

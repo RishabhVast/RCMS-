@@ -4,15 +4,21 @@ import axios from '../http.common'
 
 const resultStore =  create((set)=>({
 
- 
+    
     results : [],
 
 
-    retrieveResult : async ()=>{
-        const response = await axios.get(`studenttestresults/`);
-        console.log(`in the retrieve`,response);
+    retrieveResult : async (filter)=>{
+        console.log(`in the resultt` ,filter);
+        const response = await axios.get(`studenttestresults/`,{  
+        params : {
+            
+            'test._id': filter.test
+        },   
+    });
+
         const { data }  = response.data 
-        set((state)=> ({ results : (state = data )}))
+        set((state) => ({ results : (state = data )}))
     },
 
     updateResult : async (data)=>{

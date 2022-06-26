@@ -9,7 +9,7 @@ grades : [],
 
 retrieveGrades : async ()=>{
     const response =  await axios.get('grades');
-    console.log(` in the retrieve`, response);
+   
     const { data } = response.data
     set((state)=> ({grades : (state = data)}));
 

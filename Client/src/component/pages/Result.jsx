@@ -7,8 +7,8 @@ import standardStore from '../../stores/standardStore'
 import resultStore from '../../stores/resultStore'
 
 const Test = () => {
-  const tests = testStore((state) => state.tests)
-  const retrieveTest = testStore((state) => state.retrieveTest)
+  const tresults = testStore((state) => state.tresults)
+  const retrieveTestData = testStore((state) => state.retrieveTestData)
 
   const results = resultStore((state) => state.results)
   const retrieveResult = resultStore((state) => state.retrieveResult)
@@ -23,18 +23,23 @@ const Test = () => {
   const retrieveStandards = standardStore((state) => state.retrieveStandards)
 
   useEffect(() => {
-    retrieveTest()
-    retrieveResult()
     retrieveStandards()
     retrieveDivisions()
   }, [])
 
-  let counter = 1
-
   const [standard, setStandard] = useState('')
   const [division, setDivision] = useState('')
   const [test, setTest] = useState('')
-  const filter = [standard, division, test]
+
+  useEffect(() => {
+    retrieveResult({ test })
+  }, [test])
+
+  useEffect(() => {
+    retrieveTestData({ standard, division, test })
+  }, [standard, division, test])
+
+  let counter = 1
 
   return (
     <div className="bg-gray-300  font-serif">
@@ -114,20 +119,12 @@ const Test = () => {
                         onChange={(e) => setTest(e.target.value)}
                       >
                         <option selected>Choose a Test</option>
-                        {tests.map((test) => (
+                        {tresults.map((test) => (
                           <option key={test._id} value={test._id}>
                             {test.name} {test.subject?.name}
                           </option>
                         ))}
                       </select>
-                    </div>
-                    <div className="mt-6">
-                      <button
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ml-2 mr-2"
-                        onClick={() => console.log('in the result ', filter)}
-                      >
-                        Search
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -162,6 +159,9 @@ const Test = () => {
                     OBTAINED MARKS
                   </th>
                   <th scope="col" class="px-6 py-2">
+                    GRADE
+                  </th>
+                  <th scope="col" class="px-6 py-2">
                     ACTIONS
                   </th>
                 </tr>
@@ -188,6 +188,9 @@ const Test = () => {
                     <td className="px-6 py-2 text-center">
                       {result.obtainedMarks}
                     </td>
+                    <td className="px-6 py-2 text-center">
+                      {result.grade?.name}
+                    </td>
                     <td className="px-6 py-2 flex  gap-2">
                       <button className="px-4 py-1 text-sm text-white bg-green-600 rounded">
                         <Link
@@ -200,7 +203,9 @@ const Test = () => {
                       <button
                         className="px-4 py-1 text-sm text-white bg-red-600 rounded"
                         onClick={() => {
-                          deleteResult(result._id).then(() => retrieveResult())
+                          deleteResult(result._id).then(() =>
+                            retrieveResult(test),
+                          )
                         }}
                       >
                         Delete

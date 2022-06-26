@@ -35,6 +35,7 @@ module.exports = function (app) {
               required: true,
               minlength: 3,
               maxlength: 50,
+              unique : true,
           },
          
           password: { 
@@ -58,11 +59,13 @@ module.exports = function (app) {
              default : false,
       
           },
-        
+
           isAdmin :{
-            type : Boolean,
-            default :  false
+            type :  Boolean,
+            default : false
           }
+        
+         
           
         },
 

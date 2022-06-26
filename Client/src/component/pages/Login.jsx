@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 
 const Login = () => {
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
+    userName: yup.string().min(3).max(50),
     password: yup.string().min(8).max(1024).required(),
   })
 
@@ -49,20 +49,20 @@ const Login = () => {
             method="post"
           >
             <div>
-              <label for="email" className="block text-bold text-black">
-                Email
+              <label for="userName" className="block text-bold text-black">
+                USERNAME
               </label>
               <input
-                type="email"
+                type="userName"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 border border-black"
-                {...register('email')}
-                placeholder="Enter the Email"
+                {...register('userName')}
+                placeholder="Enter the USERNAME"
               ></input>
               <div
                 class=" rounded-lg  mb-2 text-base text-red-700 mb-3"
                 role="alert"
               >
-                {errors.email?.message}
+                {errors.userName?.message}
               </div>
             </div>
             <div className="">

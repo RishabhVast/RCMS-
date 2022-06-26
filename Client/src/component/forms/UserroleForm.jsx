@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
+import { useParams } from 'react-router-dom'
 
 const UserroleForm = () => {
   const schema = yup.object().shape({
@@ -44,7 +45,6 @@ const UserroleForm = () => {
   const usersData = userStore((state) => state.users)
 
   const users = usersData.filter((user) => user.isAdmin !== true)
-  console.log(users)
 
   //retrieve the role
   const roles = roleStore((state) => state.roles)
@@ -53,6 +53,8 @@ const UserroleForm = () => {
   // retrieve userrole
 
   const addUser = userroleStore((state) => state.addUser)
+  const userroles = userroleStore((state) => state.userroles)
+  const updateUserrole = userroleStore((state) => state.updateUserrole)
 
   useEffect(() => {
     retrieveStandards()
@@ -64,9 +66,31 @@ const UserroleForm = () => {
 
   const navigate = useNavigate()
 
+  const params = useParams()
+
+  useEffect(() => {
+    const userroleId = params.userroleId
+    console.log(`userid`, userroleId)
+    if (!userroleId) return
+    const userrole = userroles.find((u) => u._id === userroleId)
+    console.log(userrole)
+    setValue('_id', userrole._id)
+    setValue('division', userrole.division._id)
+    setValue('standard', userrole.standard._id)
+    setValue('subject', userrole.subject._id)
+    setValue('user', userrole.user._id)
+    setValue('role', userrole.role._id)
+    setValue('year', userrole.year)
+  })
+
   const onSubmitHandler = (data) => {
-    addUser(data)
-    navigate('/home/userrole')
+    if (!data._id) {
+      addUser(data)
+      navigate('/home/userrole')
+    } else {
+      updateUserrole(data)
+      navigate('/home/userrole')
+    }
   }
 
   return (
@@ -115,13 +139,13 @@ const UserroleForm = () => {
           </select>
 
           <label
-            for="countries"
+            for=""
             className="block text-sm font-medium text-white dark:text-white"
           >
             Select an Division
           </label>
           <select
-            id="countries"
+            id=""
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             {...register('division')}
           >
@@ -133,13 +157,13 @@ const UserroleForm = () => {
             ))}
           </select>
           <label
-            for="countries"
+            for=""
             className="block text-sm font-medium text-white dark:text-white"
           >
             Select an Subject
           </label>
           <select
-            id="countries"
+            id=""
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             {...register('subject')}
           >
@@ -152,13 +176,13 @@ const UserroleForm = () => {
           </select>
 
           <label
-            for="countries"
+            for=""
             className="block text-sm font-medium text-white dark:text-white"
           >
             Select an User
           </label>
           <select
-            id="countries"
+            id=""
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             {...register('user')}
           >
@@ -171,13 +195,13 @@ const UserroleForm = () => {
           </select>
 
           <label
-            for="countries"
+            for=""
             className="block text-sm font-medium text-white dark:text-white"
           >
             Select an Role
           </label>
           <select
-            id="countries"
+            id=""
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             {...register('role')}
           >
