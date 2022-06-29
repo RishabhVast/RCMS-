@@ -16,7 +16,7 @@ const authentication = require('./authentication');
 const mongoose = require('./mongoose');
 const app = express(feathers());
 
-const seeds = require('./seed');
+const admin = require('./adminScript');
 
 // Load app configuration
 app.configure(configuration());
@@ -49,7 +49,7 @@ app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
 
-app.configure(seeds);
+app.configure(admin);
 
 
 

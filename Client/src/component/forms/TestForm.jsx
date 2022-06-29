@@ -211,57 +211,6 @@ const TestForm = () => {
               </select>
             </div>
 
-            <div class="form-group mb-6">
-              <label>HIGHEST MARKS </label>
-              <input
-                type="text"
-                class="form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-         text-gray-900
-          bg-white bg-clip-padding
-          border border-solid border-gray-700
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                id="exampleFormControlInput5"
-                placeholder="Disabled input"
-                aria-label="Disabled input example"
-                disabled
-              />
-            </div>
-            <div class="form-group mb-6">
-              <label>AVERAGE MARKS </label>
-              <input
-                type="text"
-                class="form-control
-          block
-          w-full
-          px-3
-          py-1.5
-          text-base
-          font-normal
-         text-gray-900
-          bg-white bg-clip-padding
-          border border-solid border-gray-700
-          rounded
-          transition
-          ease-in-out
-          m-0
-          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                id="exampleFormControlInput5"
-                placeholder="Disabled input"
-                aria-label="Disabled input example"
-                disabled
-              />
-            </div>
-
             <button
               type="submit"
               class="

@@ -7,7 +7,7 @@ const Classteacher = () => {
   //const user = loginStore((state) => state.users)
 
   return (
-    <div className="flex bg-gray-300  ">
+    <div className="flex ">
       <aside class=" w-1/10 bg-red-900 shadow-lg h-screen">
         <div class="flex items-center justify-center p-4 shadow-lg">
           <div>

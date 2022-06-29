@@ -13,7 +13,7 @@ const standardStore = create((set) => ({
     
   retrieveStandards : async () => {
  
-    const response = await axios.get("/standards"); 
+    const response = await axios.get("/standards", { headers: { "Authorization": sessionStorage.getItem("token") }}); 
     const {data} = response.data;
     set((state) => ({ standards: (state = data) }));
     return response

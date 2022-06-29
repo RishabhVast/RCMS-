@@ -23,9 +23,9 @@ const ResultForm = () => {
 
   const onSubmitHandler = () => {
     const arr = []
-    for (const key of Object.keys(marksArray)) {
+    for (const key of Object.keys(marksData)) {
       console.log(`in the keys`, key)
-      arr.push(marksArray[key])
+      arr.push(marksData[key])
     }
     console.log(arr)
     axios.post('studenttestresults', arr)
@@ -62,8 +62,6 @@ const ResultForm = () => {
   const params = useParams()
   const testId = params.testId
 
-  const marksArray = {}
-
   const getGrade = (obtainedMarks) => {
     let studentResult = ''
     grades.map((grade) => {
@@ -75,9 +73,12 @@ const ResultForm = () => {
     return studentResult
   }
 
+  const marksData = {}
   let counter = 1
   const addMarks = (e, student) => {
-    marksArray[student._id] = {
+    marksData[student._id] = {
+      //it create a key in with name stud_id in marks data
+
       student: student._id,
       obtainedMarks: Number(e.target.value),
       test: test._id,
@@ -205,7 +206,10 @@ const ResultForm = () => {
                                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                               id="obtainedMarks"
                               placeholder="Enter Obtained Marks"
-                              onBlur={(e) => addMarks(e, student)}
+                              onBlur={(e) => {
+                                console.log(`in the event`, e)
+                                addMarks(e, student)
+                              }}
                             />
                           </div>
                         </div>

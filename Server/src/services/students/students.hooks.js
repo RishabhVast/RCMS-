@@ -6,12 +6,12 @@ const fetchDivision = require('../userroles/hooks/fetchDivision')
 
 module.exports = {
   before: {
-    all: [  ],
+    all: [authenticate("jwt")],
     find: [],
-    get: [],
-    create: [ validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision()],
+    get:  [],
+    create: [ validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision() ,],
     update: [validate.form(schema , {abortEarly : false}),fetchStandard() , fetchDivision()],
-    patch: [],
+    patch:  [],
     remove: []
   },
 
