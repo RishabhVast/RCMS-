@@ -14,7 +14,7 @@ const useStore = create((set)=>({
     retrieveStudents : async ()=>{
         const response = await axios.get('students', { headers: { "Authorization": sessionStorage.getItem("token") }});   
         const {data} = response.data
-        set((state)=> ({students : (state = data)}))
+        set((state) => ({students : (state = data)}))
         return response;
 
     },

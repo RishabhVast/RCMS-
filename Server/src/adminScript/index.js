@@ -22,7 +22,7 @@ function ifEmptyCreate(name, data){
         } 
         catch(e) { 
             console.log(e);
-        }
+        } 
     }
 }
 

@@ -1,6 +1,6 @@
 module.exports = function () {
   const  calculateMarks = (hook) => {
-       var max = Math.max(
+       let max = Math.max(
            ...hook.data.map(obj => obj.obtainedMarks)
        );
        const totalMarks = hook.data.reduce((total, student) => {

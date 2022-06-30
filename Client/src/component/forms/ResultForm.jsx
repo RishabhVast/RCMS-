@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import testStore from '../../stores/testStore'
 import studentStore from '../../stores/studentStore'
 import gradeStore from '../../stores/gradeStore'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -12,12 +12,7 @@ import axios from '../../http.common'
 const ResultForm = () => {
   const schema = yup.object().shape({})
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm({ resolver: yupResolver(schema) })
+  const { handleSubmit } = useForm({ resolver: yupResolver(schema) })
 
   const navigate = useNavigate()
 
@@ -77,8 +72,6 @@ const ResultForm = () => {
   let counter = 1
   const addMarks = (e, student) => {
     marksData[student._id] = {
-      //it create a key in with name stud_id in marks data
-
       student: student._id,
       obtainedMarks: Number(e.target.value),
       test: test._id,
